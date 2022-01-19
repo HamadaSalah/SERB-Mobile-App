@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Driver;
 use App\Http\Controllers\Controller;
 use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Traits\StoreImageTrait;
+// use App\Traits\StoreImageTrait;
 use Exception;
 
 class OrdersController extends Controller
 {
-    use StoreImageTrait;
+    // use StoreImageTrait;
     // public function __construct()
     // {
     //     $this->middleware('auth:api');
@@ -56,9 +57,67 @@ class OrdersController extends Controller
             return response()->json(['Validation Erorrs' => $validator->messages()], 403);
         }
         else {
+            try {
+                $SERVER_API_KEY = 'AAAAqF4LZyc:APA91bE2U5uKDHqhbigz5TF_t0RSoIYyHJPmogU07MoyLWdjQlGBcFKFGirIDm7a-98m2454vQ2zUXhS6sxUpncgbKRHeJKg4tKy0PNgHxjJntTzHOMLlgFNMdkypobfVhstJHFHN_EzAAAAqF4LZyc:APA91bE2U5uKDHqhbigz5TF_t0RSoIYyHJPmogU07MoyLWdjQlGBcFKFGirIDm7a-98m2454vQ2zUXhS6sxUpncgbKRHeJKg4tKy0PNgHxjJntTzHOMLlgFNMdkypobfVhstJHFHN_Ez';
+
+                $token_1 = Driver::pluck('fcm_token')->toArray();
+                $data = [
+            
+                    "registration_ids" => $token_1,
+            
+                    "notification" => [
+            
+                        "title" => 'Welcome',
+            
+                        "body" => 'New Order Added to Serb',
+            
+                        "sound"=> "default" // required for sound on ios
+            
+                    ],
+            
+                ];
+            
+                $dataString = json_encode($data);
+            
+                $headers = [
+            
+                    'Authorization: key=' . $SERVER_API_KEY,
+            
+                    'Content-Type: application/json',
+            
+                ];
+            
+                $ch = curl_init();
+            
+                curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+            
+                curl_setopt($ch, CURLOPT_POST, true);
+            
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+            
+                $response = curl_exec($ch);
+            
+            }
+            catch(Exception $e) {
+
+            }
             $request_data = $request->except(['token']);
-        if ($this->verifyAndStoreImage($request, $fieldname = 'img', $directory = 'orders' , $myroute = 'http://serb.devhamadasalah.com/storage/orders/') != null)
-             $request_data['img'] = $this->verifyAndStoreImage($request, $fieldname = 'img', $directory = 'orders', $myroute = 'http://serb.devhamadasalah.com/storage/orders/');
+        // if ($this->verifyAndStoreImage($request, $fieldname = 'img', $directory = 'orders' , $myroute = 'http://serb.devhamadasalah.com/storage/orders/') != null)
+        //      $request_data['img'] = $this->verifyAndStoreImage($request, $fieldname = 'img', $directory = 'orders', $myroute = 'http://serb.devhamadasalah.com/storage/orders/');
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
+            $ext = $file->getClientOriginalExtension();
+            $filename = 'product_image'.'_'.time().'.'.$ext;
+            $file->storeAs('public/orders', $filename);
+            $request_data['record'] = 'http://serb.devhamadasalah.com/storage/orders/'.$filename;
+        }
+        
         if ($request->hasFile('record')) {
             $file = $request->file('record');
             $ext = $file->getClientOriginalExtension();

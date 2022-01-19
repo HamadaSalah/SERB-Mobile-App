@@ -49,6 +49,14 @@ Route::group(['middleware' => 'api'], function () {
     route::post('help/{id}', 'PaymentMethodController@help');
     route::post('contact-us/{id}', 'PaymentMethodController@contactUs');
     route::post('editProfile/{id}', 'AuthController@EditProfile');
+    //Offers
+    Route::get('getAllOffers/{id}', 'Driver\OffersController@show');
+    Route::get('AcceptOffer/{id}', 'Driver\OffersController@AcceptOffer');
+    Route::get('openChatWithDriver/', 'Driver\OffersController@openChatWithDriver');
+    Route::get('getAllChatRooms/{id}', 'Driver\OffersController@getAllChatRooms');
+    Route::post('SendMessage/', 'Driver\OffersController@SendMessage');
+    Route::post('ChangeStatus/{id}', 'Driver\OffersController@ChangeStatus');
+
 });
 
 //Driver Routes
@@ -63,6 +71,8 @@ Route::group(['prefix' => 'auth/driver'], function ($router) {
     Route::post('logout', 'Driver\AuthController@logout');
     Route::post('refresh', 'Driver\AuthController@refresh');
     Route::post('me', 'Driver\AuthController@me');
+    Route::post('addNewOffer', 'Driver\OffersController@create');
+
 });
 Route::group(['middleware' => 'api', 'prefix' => 'auth/driver'], function () {
     Route::get('allorders', 'Driver\OrdersController@index');
@@ -71,9 +81,4 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth/driver'], function () {
     Route::post('addCarDriver/{id}', 'Driver\DriverController@addCarDriver');
     Route::post('addCarCompany/{id}', 'Driver\DriverController@addCarCompany');
     Route::get('allcars/{id}', 'Driver\DriverController@allCars');
-    Route::post('addNewOrder', 'Driver\OffersController@create');
-    Route::get('getAllOffers/{id}', 'Driver\OffersController@show');
-    Route::get('AcceptOffer/{id}', 'Driver\OffersController@AcceptOffer');
-    Route::get('openChatWithDriver/', 'Driver\OffersController@openChatWithDriver');
-    Route::get('getAllChatRooms/{id}', 'Driver\OffersController@getAllChatRooms');
 });
