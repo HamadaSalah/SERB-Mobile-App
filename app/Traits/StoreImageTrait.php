@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\HomeRequest;
 trait StoreImageTrait {
 
-    public function verifyAndStoreImage( Request $request, $fieldname = 'img', $directory = 'unknown', $myroute ) {
+    public function verifyAndStoreImage( Request $request, $fieldname = 'img', $directory = 'unknown', $myroute = 'http://serb.devhamadasalah.com/storage' ) {
 
         if( $request->hasFile( $fieldname ) ) {
             if(is_array($request->file($fieldname))) {

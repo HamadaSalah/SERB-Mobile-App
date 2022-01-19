@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Driver;
 
 use App\Chat;
 use App\Driver;
+use App\Events\SendMessage;
 use App\Http\Controllers\Controller;
 use App\Offer;
 use App\Order;
@@ -245,6 +246,7 @@ class OffersController extends Controller
                     'driver_id' =>$request->driver_id,
                     'message' =>$request->message,
                 ]);
+                broadcast(new SendMessage($room->message, $room->driver_id));
                 return response()->json(['data' => $room]);
 
             }
@@ -271,5 +273,14 @@ class OffersController extends Controller
             }
 
     }
+    public function getAllMessages($id) {
+        try {
+            $chats = Chat::where('room_id', $id)->latest()->get()->toArray();
+            return response()->json(['data' => $chats]);
 
+        }
+        catch(Exception $e) {
+            return response()->json($e->getMessage());
+        }
+}
 }
