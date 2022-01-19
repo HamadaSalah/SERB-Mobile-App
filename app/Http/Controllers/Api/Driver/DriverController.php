@@ -217,6 +217,60 @@ class DriverController extends Controller
         }
                 
     }
+    public function AddDriverToComapny($id,Request $request) {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'password' => 'required',
+            'nation_id' => 'required',
+            'licence' => 'required',
+            'photo' => 'required',
+        ]);
+        if($validator->fails()) {
+            return response()->json(['Validation Erorrs' => $validator->messages()], 403);
+        }
+        else {
+            if ($request->hasFile('nation_id')) {
+                $file = $request->file('nation_id');
+                $ext = $file->getClientOriginalExtension();
+                $filename = 'nation_id'.'_'.time().'.'.$ext;
+                $file->storeAs('public/drivers', $filename);
+                $request_data['nation_id'] = 'http://serb.devhamadasalah.com/storage/drivers/'.$filename;
+            }
+
+            if ($request->hasFile('licence')) {
+                $file = $request->file('licence');
+                $ext = $file->getClientOriginalExtension();
+                $filename = 'licence'.'_'.time().'.'.$ext;
+                $file->storeAs('public/drivers', $filename);
+                $request_data['licence'] = 'http://serb.devhamadasalah.com/storage/drivers/'.$filename;
+            }
+
+            if ($request->hasFile('photo')) {
+                $file = $request->file('photo');
+                $ext = $file->getClientOriginalExtension();
+                $filename = 'photo'.'_'.time().'.'.$ext;
+                $file->storeAs('public/drivers', $filename);
+                $request_data['photo'] = 'http://serb.devhamadasalah.com/storage/drivers/'.$filename;
+            }
+
+            $driver = Driver::create([
+                'full_name' =>  $request['name'],
+                'email' =>  $request['email'],
+                'phone' =>  $request['phone'],
+                'password' =>  bcrypt($request['password']),
+                'type' =>  'company_driver',
+                'NationID' =>  $request_data['nation_id'],
+                'D_licence' =>  $request_data['licence'],
+                'photo' =>  $request_data['photo'],
+                'company_id' => $id, 
+
+            ]);
+            return response()->json(['data' => [$driver]]);
+
+        }
+    }
     public function addCarCompany($id, Request $request) {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
@@ -232,12 +286,7 @@ class DriverController extends Controller
             'img_right' => 'required',
             'form' => 'required',
             'policy' => 'required',
-            'd_name' => 'required',
-            'd_email' => 'required',
-            'd_phone' => 'required',
-            'd_nation_id' => 'required',
-            'd_licence' => 'required',
-            'd_photo' => 'required',
+            'driver_id' => 'required'
         ]);
         if($validator->fails()) {
             return response()->json(['Validation Erorrs' => $validator->messages()], 403);
@@ -287,41 +336,6 @@ class DriverController extends Controller
                 $request_data['policy'] = 'http://serb.devhamadasalah.com/storage/cars/'.$filename;
             }
 
-            if ($request->hasFile('d_nation_id')) {
-                $file = $request->file('d_nation_id');
-                $ext = $file->getClientOriginalExtension();
-                $filename = 'd_nation_id'.'_'.time().'.'.$ext;
-                $file->storeAs('public/drivers', $filename);
-                $request_data['d_nation_id'] = 'http://serb.devhamadasalah.com/storage/drivers/'.$filename;
-            }
-
-            if ($request->hasFile('d_licence')) {
-                $file = $request->file('d_licence');
-                $ext = $file->getClientOriginalExtension();
-                $filename = 'd_licence'.'_'.time().'.'.$ext;
-                $file->storeAs('public/drivers', $filename);
-                $request_data['d_licence'] = 'http://serb.devhamadasalah.com/storage/drivers/'.$filename;
-            }
-
-            if ($request->hasFile('d_photo')) {
-                $file = $request->file('d_photo');
-                $ext = $file->getClientOriginalExtension();
-                $filename = 'd_photo'.'_'.time().'.'.$ext;
-                $file->storeAs('public/drivers', $filename);
-                $request_data['d_photo'] = 'http://serb.devhamadasalah.com/storage/drivers/'.$filename;
-            }
-            $driver = Driver::create([
-                'full_name' =>  $request_data['d_name'],
-                'email' =>  $request_data['d_email'],
-                'phone' =>  $request_data['d_phone'],
-                'password' =>  bcrypt('12332100'),
-                'type' =>  'company_driver',
-                'NationID' =>  $request_data['d_nation_id'],
-                'D_licence' =>  $request_data['d_licence'],
-                'photo' =>  $request_data['d_photo'],
-                'company_id' => $id, 
-
-            ]);
 
             $car = Car::create([
                 'driver_id' => $id,
@@ -338,9 +352,9 @@ class DriverController extends Controller
                 'img_right' => $request_data['img_right'],
                 'form' => $request_data['form'],
                 'policy' => $request_data['policy'],
-                'driver_company_id' => $driver->id
+                'driver_company_id' => $request_data['driver_id']
             ]);
-            return response()->json(['data' => [$car, $driver]]);
+            return response()->json(['data' => [$car]]);
         }
     }
     public function allCars($id) {

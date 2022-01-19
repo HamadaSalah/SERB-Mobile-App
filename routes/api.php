@@ -80,6 +80,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth/driver'], function () {
     Route::get('order/{id}', 'Driver\OrdersController@show');
     Route::post('uploadDocs/{id}', 'Driver\DriverController@UploadDocs');
     Route::post('addCarDriver/{id}', 'Driver\DriverController@addCarDriver');
+    Route::post('AddDriverToComapny/{id}', 'Driver\DriverController@AddDriverToComapny');
     Route::post('addCarCompany/{id}', 'Driver\DriverController@addCarCompany');
     Route::get('allcars/{id}', 'Driver\DriverController@allCars');
 });

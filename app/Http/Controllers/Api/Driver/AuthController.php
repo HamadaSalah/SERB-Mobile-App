@@ -45,11 +45,20 @@ class AuthController extends Controller
             'country' => 'required',
             'city' => 'required',
             'fcm_token' => 'required',
+            'type' => 'required'
         ]);
         if($validator->fails()) {
             return response()->json(['Validation Erorrs' => $validator->messages()], 403);
         }
         else {
+            if ($request->hasFile('photo')) {
+                $file = $request->file('photo');
+                $ext = $file->getClientOriginalExtension();
+                $filename = 'photo'.'_'.time().'.'.$ext;
+                $file->storeAs('public/drivers', $filename);
+                $request_data['photo'] = 'http://serb.devhamadasalah.com/storage/drivers/'.$filename;
+            }
+
                 $driver = Driver::create([
                     'full_name' => $request->full_name,
                     'email' => $request->email,
@@ -58,6 +67,8 @@ class AuthController extends Controller
                     'fcm_token' => $request->fcm_token,
                     'country' => $request->country,
                     'city' => $request->city,
+                    'type' => $request->type,
+                    'photo' => $request_data['photo']
                 ]);
                 $myuser = Driver::findOrFail($driver->id);
                 return response()->json([
