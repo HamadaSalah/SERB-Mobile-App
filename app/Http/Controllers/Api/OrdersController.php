@@ -7,12 +7,12 @@ use App\Http\Controllers\Controller;
 use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-// use App\Traits\StoreImageTrait;
+use App\Traits\StoreImageTrait;
 use Exception;
 
 class OrdersController extends Controller
 {
-    // use StoreImageTrait;
+    use StoreImageTrait;
     // public function __construct()
     // {
     //     $this->middleware('auth:api');
@@ -108,15 +108,15 @@ class OrdersController extends Controller
 
             }
             $request_data = $request->except(['token']);
-        // if ($this->verifyAndStoreImage($request, $fieldname = 'img', $directory = 'orders' , $myroute = 'http://serb.devhamadasalah.com/storage/orders/') != null)
-        //      $request_data['img'] = $this->verifyAndStoreImage($request, $fieldname = 'img', $directory = 'orders', $myroute = 'http://serb.devhamadasalah.com/storage/orders/');
-        if ($request->hasFile('img')) {
-            $file = $request->file('img');
-            $ext = $file->getClientOriginalExtension();
-            $filename = 'product_image'.'_'.time().'.'.$ext;
-            $file->storeAs('public/orders', $filename);
-            $request_data['img'] = 'http://serb.devhamadasalah.com/storage/orders/'.$filename;
-        }
+        if ($this->verifyAndStoreImage($request, $fieldname = 'img', $directory = 'orders' , $myroute = 'http://serb.devhamadasalah.com/storage/orders/') != null)
+             $request_data['img'] = $this->verifyAndStoreImage($request, $fieldname = 'img', $directory = 'orders', $myroute = 'http://serb.devhamadasalah.com/storage/orders/');
+        // if ($request->hasFile('img')) {
+        //     $file = $request->file('img');
+        //     $ext = $file->getClientOriginalExtension();
+        //     $filename = 'product_image'.'_'.time().'.'.$ext;
+        //     $file->storeAs('public/orders', $filename);
+        //     $request_data['img'] = 'http://serb.devhamadasalah.com/storage/orders/'.$filename;
+        // }
         
         if ($request->hasFile('record')) {
             $file = $request->file('record');
