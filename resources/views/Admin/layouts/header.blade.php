@@ -9,6 +9,20 @@
   <title>
     سرب -  @yield('title')
   </title>
+
+  <script src="https://use.fontawesome.com/3859c5f1d0.js"></script>
+  <link rel="stylesheet" href="{{ asset('datatables/jquery.dataTables.min.css')}}" />    <!--  dataTable الرئيسي المغلق -->
+  <link rel="stylesheet" href="{{ asset('datatables/buttons.dataTables.min.css')}}" />   <!--  زر جدول dataTable الرئيسي المغلق -->
+  <script src="{{ asset('datatables/jquery-3.6.0.min.js')}}"></script>                       <!--  جدول dataTable الرئيسي js -->
+    <script src="{{ asset('datatables/jquery.dataTables.min.js')}}"></script>            <!--  جدول dataTable الرئيسي js -->
+    <script src="{{ asset('datatables/dataTables.buttons.min.js')}}"></script>           <!--  زر جدول dataTable js الرئيسي -->
+    <script src="{{ asset('datatables/jszip.min.js')}}"></script>
+    <script src="{{ asset('datatables/buttons.html5.min.js')}}"></script>          <!--  تصدير وظيفة js -->
+    {{-- <script src="{{ asset('datatables/buttons.flash.min.js')}}"></script>          <!--  تصدير وظيفة js --> --}}
+    <script src="{{ asset('datatables/pdfmake.min.js')}}"></script>               <!--  تصدير وظيفة js -->
+    <script src="{{ asset('datatables/vfs_fonts.js')}}"></script>               <!--  تصدير وظيفة js -->
+    <script src="{{ asset('datatables/buttons.print.min.js')}}"></script>       <!--  تصدير وظيفة js -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;400&display=swap" rel="stylesheet">

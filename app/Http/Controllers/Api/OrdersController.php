@@ -115,7 +115,7 @@ class OrdersController extends Controller
             $ext = $file->getClientOriginalExtension();
             $filename = 'product_image'.'_'.time().'.'.$ext;
             $file->storeAs('public/orders', $filename);
-            $request_data['record'] = 'http://serb.devhamadasalah.com/storage/orders/'.$filename;
+            $request_data['img'] = 'http://serb.devhamadasalah.com/storage/orders/'.$filename;
         }
         
         if ($request->hasFile('record')) {

@@ -126,3 +126,19 @@ tr, th {
 .navbar-vertical.navbar-expand-xs .navbar-collapse {
     height: 100%!important;
 }
+.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
+  padding: 30px;
+}
+button.dt-button:first-child, div.dt-button:first-child, a.dt-button:first-child, input.dt-button:first-child {
+  margin-left: 40px;
+  background: #e63572;
+  color: #FFF;
+  border-radius: 5px;
+  border-color: navajowhite;
+}
+button.dt-button:first-child:hover, div.dt-button:first-child:hover, a.dt-button:first-child:hover, input.dt-button:first-child:hover {
+  background: #e63572;
+  color: #FFF;
+  border-radius: 5px;
+  border-color: navajowhite;
+}

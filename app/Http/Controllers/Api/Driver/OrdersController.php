@@ -13,15 +13,28 @@ class OrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($limit = null)
     {
-        try{
-            $orders = Order::paginate(10);
-            return response()->json(['data' =>$orders, 200]);
+        if($limit != NULL) {
+            try{
+                $orders = Order::with('users')->latest()->limit($limit)->get();
+                return response()->json(['data' =>$orders]);
+                }
+                catch(\Exception $e) {
+                    return response()->json(['data' => $e->getMessage()]);
+                }
             }
-            catch(\Exception $e) {
-                return response()->json(['data' => $e->getMessage()], 200);
-            }
+                
+        else {
+            try{
+                $orders = Order::with('users')->latest()->get();
+                return response()->json(['data' =>$orders]);
+                }
+                catch(\Exception $e) {
+                    return response()->json(['data' => $e->getMessage()]);
+                }
+
+        }
             
     
     }

@@ -76,7 +76,7 @@ Route::group(['prefix' => 'auth/driver'], function ($router) {
 
 });
 Route::group(['middleware' => 'api', 'prefix' => 'auth/driver'], function () {
-    Route::get('allorders', 'Driver\OrdersController@index');
+    Route::get('allorders/{limit?}', 'Driver\OrdersController@index');
     Route::get('order/{id}', 'Driver\OrdersController@show');
     Route::post('uploadDocs/{id}', 'Driver\DriverController@UploadDocs');
     Route::post('addCarDriver/{id}', 'Driver\DriverController@addCarDriver');
