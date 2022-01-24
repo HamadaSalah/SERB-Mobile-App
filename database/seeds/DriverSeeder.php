@@ -48,63 +48,78 @@ class DriverSeeder extends Seeder
             'policy' => 'no-img.png',
         ]);
         CarTypes::create([
-            'name' => 'حافلات'
+            'name' => 'حافلات',
+            'img' => 'http://serb.devhamadasalah.com/storage/images/cartypes/7afla.png'
         ]);
         CarTypes::create([
-            'name' => 'نقل اثاث منزلي'
+            'name' => 'نقل اثاث منزلي',
+            'img' => 'http://serb.devhamadasalah.com/storage/images/cartypes/asas.png'
         ]);
         CarTypes::create([
-            'name' => 'شاحنات'
+            'name' => 'شاحنات',
+            'img' => 'http://serb.devhamadasalah.com/storage/images/cartypes/sha7na.png'
         ]);
         CarTypes::create([
-            'name' => 'أخري'
+            'name' => 'أخري',
+            'img' => 'http://serb.devhamadasalah.com/storage/images/cartypes/other.png'
         ]);
         /////////////////////////////
         CarTypes::create([
             'name' => 'حافلات صغيرة (10-20) راكب',
+            'img' => 'http://serb.devhamadasalah.com/storage/images/cartypes/7afla.png',
             'parent_id' => 1
         ]);
         CarTypes::create([
             'name' => 'حافلات متوسطة (20-40) راكب',
+            'img' => 'http://serb.devhamadasalah.com/storage/images/cartypes/7afla.png',
             'parent_id' => 1
         ]);
         CarTypes::create([
             'name' => 'حافلات كبيرة (+40) راكب',
+            'img' => 'http://serb.devhamadasalah.com/storage/images/cartypes/7afla.png',
             'parent_id' => 1
         ]);
         ///////////////////////////
         CarTypes::create([
             'name' => 'نقل صغير (1) غرفة',
+            'img' => 'http://serb.devhamadasalah.com/storage/images/cartypes/asas.png',
             'parent_id' => 2
         ]);
         CarTypes::create([
             'name' => 'نقل كامل',
+            'img' => 'http://serb.devhamadasalah.com/storage/images/cartypes/asas.png',
             'parent_id' => 2
         ]);
         CarTypes::create([
             'name' => 'نقل بين المدن',
+            'img' => 'http://serb.devhamadasalah.com/storage/images/cartypes/asas.png',
             'parent_id' => 2
         ]);
         ///////////////////////////
         CarTypes::create([
             'name' => 'نقل بضائع',
+            'img' => 'http://serb.devhamadasalah.com/storage/images/cartypes/sha7na.png',
             'parent_id' => 3
         ]);
         CarTypes::create([
             'name' => 'نقل بين المدن',
+            'img' => 'http://serb.devhamadasalah.com/storage/images/cartypes/sha7na.png',
             'parent_id' => 3
         ]);
         CarTypes::create([
             'name' => 'نقل دولي',
+            'img' => 'http://serb.devhamadasalah.com/storage/images/cartypes/sha7na.png',
             'parent_id' => 3
         ]);
         ///////////////////////////
         CarTypes::create([
             'name' => 'نقل ردميات',
+            'img' => 'http://serb.devhamadasalah.com/storage/images/cartypes/other.png',
             'parent_id' => 4
         ]);
         CarTypes::create([
             'name' => 'حاويات',
+            'img' => 'http://serb.devhamadasalah.com/storage/images/cartypes/other.png',
             'parent_id' => 4
         ]);
 
