@@ -3,6 +3,7 @@
 use App\Car;
 use App\CarTypes;
 use App\Driver;
+use App\User;
 use Illuminate\Database\Seeder;
 
 class DriverSeeder extends Seeder
@@ -121,6 +122,18 @@ class DriverSeeder extends Seeder
             'name' => 'حاويات',
             'img' => 'http://serb.devhamadasalah.com/storage/images/cartypes/other.png',
             'parent_id' => 4
+        ]);
+        User::create([
+            'name' => 'shebo',
+            'email' => 'shebo@mail.com',
+            'password' => '123456',
+            'phone' => '+201124928786'
+        ]);
+        Driver::create([
+            'full_name' => 'driver',
+            'email' => 'driver@mail.com',
+            'password' => '123456',
+            'phone' => '+201124928786'
         ]);
 
     }

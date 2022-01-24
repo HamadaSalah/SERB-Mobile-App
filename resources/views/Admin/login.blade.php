@@ -27,7 +27,7 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-pic js-tilt" data-tilt>
-					<img src="{{asset('assets/loginPage/images/img-01.png')}}" alt="IMG">
+					<img src="{{asset('assets/img/logo-ct.png')}}" alt="IMG">
 				</div>
 				<form class="login100-form validate-form" method="post" action="{{route('admin.login')}}">
           @csrf
