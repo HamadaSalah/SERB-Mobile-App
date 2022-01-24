@@ -23,7 +23,7 @@ class CreateOrdersTable extends Migration
             $table->string('end_loc')->nullable();
             $table->longText('details')->nullable();
             $table->string('record')->nullable();
-            $table->json('img')->nullable();
+            $table->string('img')->nullable();
             $table->string('start_loc_lat')->nullable();
             $table->string('start_loc_lang')->nullable();
             $table->string('end_loc_lat')->nullable();

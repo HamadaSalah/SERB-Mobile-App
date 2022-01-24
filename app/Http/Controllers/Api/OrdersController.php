@@ -140,7 +140,7 @@ class OrdersController extends Controller
      */
     public function show($id)
     {
-        $orders = Order::where('user_id', $id)->get()->toArray();
+        $orders = Order::with('driver')->where('user_id', $id)->get()->toArray();
         return response()->json(['data' => $orders], 200);
     }
     public function showorder($id) {
