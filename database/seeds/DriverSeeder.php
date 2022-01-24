@@ -126,13 +126,13 @@ class DriverSeeder extends Seeder
         User::create([
             'name' => 'shebo',
             'email' => 'shebo@mail.com',
-            'password' => '123456',
+            'password' => bcrypt('123456'),
             'phone' => '+201124928786'
         ]);
         Driver::create([
             'full_name' => 'driver',
             'email' => 'driver@mail.com',
-            'password' => '123456',
+            'password' => bcrypt('123456'),
             'phone' => '+201124928786'
         ]);
 
