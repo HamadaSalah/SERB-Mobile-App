@@ -23,12 +23,12 @@ class CreateOrdersTable extends Migration
             $table->string('end_loc')->nullable();
             $table->longText('details')->nullable();
             $table->string('record')->nullable();
-            $table->string('img')->nullable();
+            $table->json('img')->nullable();
             $table->string('start_loc_lat')->nullable();
             $table->string('start_loc_lang')->nullable();
             $table->string('end_loc_lat')->nullable();
             $table->string('end_loc_lang')->nullable();
-            $table->enum('status', ['ordered', 'pending', 'cancel', 'done' ])->default('ordered');
+            $table->enum('status', ['ordered', 'accepted', 'cancel', 'done' ])->default('ordered');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('driver_id')->nullable();
             $table->timestamps();

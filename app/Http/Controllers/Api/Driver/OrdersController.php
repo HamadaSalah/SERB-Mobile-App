@@ -17,7 +17,7 @@ class OrdersController extends Controller
     {
         if($limit != NULL) {
             try{
-                $orders = Order::with('users')->latest()->limit($limit)->get();
+                $orders = Order::latest()->limit($limit)->get();
                 return response()->json(['data' =>$orders]);
                 }
                 catch(\Exception $e) {
@@ -27,7 +27,7 @@ class OrdersController extends Controller
                 
         else {
             try{
-                $orders = Order::with('users')->latest()->get();
+                $orders = Order::latest()->get();
                 return response()->json(['data' =>$orders]);
                 }
                 catch(\Exception $e) {

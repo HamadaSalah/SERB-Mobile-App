@@ -44,6 +44,7 @@ Route::prefix('admin')->middleware('auth:admin')->name('admin.')->group(function
     Route::get('/about', 'TermsController@about')->name('about');
     Route::post('/saveAbout', 'TermsController@saveAbout')->name('saveAbout');
     Route::resource('order', 'OrdersController');
+    Route::get('orders-report', 'ReportsController@');
 });
 
 Auth::routes();

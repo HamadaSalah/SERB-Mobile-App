@@ -126,8 +126,14 @@ class OffersController extends Controller
     public function AcceptOffer($id) {
         try {
             $offer = Offer::findOrFail($id);
-            $offer->update(['status' => 'accepted']);    
-
+            $order_id = $offer->order->id;
+            $driver_id = $offer->driver_id;
+            $order = Order::findOrFail($order_id);
+            
+            $order->update(['status' => 'accepted']); 
+            $order->update(['driver_id' => $driver_id]); 
+            $offer->update(['status' => 'accepted']);
+            $myorder = Order::with('driver')->findOrFail($order_id);
             ///////
             try {
                 $SERVER_API_KEY = 'AAAAqF4LZyc:APA91bE2U5uKDHqhbigz5TF_t0RSoIYyHJPmogU07MoyLWdjQlGBcFKFGirIDm7a-98m2454vQ2zUXhS6sxUpncgbKRHeJKg4tKy0PNgHxjJntTzHOMLlgFNMdkypobfVhstJHFHN_Ez';
@@ -184,7 +190,7 @@ class OffersController extends Controller
 
 
             ///
-            return response()->json(['data' => $offer]);
+            return response()->json(['data' => $myorder]);
         }
         catch(Exception $e) {
             return response()->json($e->getMessage());
