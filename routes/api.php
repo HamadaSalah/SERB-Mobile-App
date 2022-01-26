@@ -54,6 +54,7 @@ Route::group(['middleware' => 'api'], function () {
     Route::get('AcceptOffer/{id}', 'Driver\OffersController@AcceptOffer');
     Route::get('openChatWithDriver/', 'Driver\OffersController@openChatWithDriver');
     Route::get('getAllChatRooms/{id}', 'Driver\OffersController@getAllChatRooms');
+    Route::get('getAllChatRoomsDriver/{id}', 'Driver\OffersController@getAllChatRoomsDriver');
     Route::post('SendMessage/', 'Driver\OffersController@SendMessage');
     Route::get('getAllMessages/{id}', 'Driver\OffersController@getAllMessages');
     Route::post('ChangeStatus/{id}', 'Driver\OffersController@ChangeStatus');

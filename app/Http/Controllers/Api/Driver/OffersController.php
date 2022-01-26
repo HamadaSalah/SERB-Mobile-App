@@ -234,6 +234,19 @@ class OffersController extends Controller
             return response()->json($e->getMessage());
         }
     }
+    public function getAllChatRoomsDriver($id) {
+        try {
+            $rooms = Room::where('rooms.driver_id', $id)
+            ->join('orders', 'rooms.order_id', '=', 'orders.id')
+            ->join('users', 'orders.user_id', '=', 'users.id')
+           ->get();
+            return response()->json(['data' => $rooms]);
+
+        }
+        catch(Exception $e) {
+            return response()->json($e->getMessage());
+        }
+    }
     public function SendMessage(Request $request) {
         $validator = Validator::make($request->all(), [
             'room_id' => 'required',
