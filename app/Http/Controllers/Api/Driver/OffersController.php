@@ -223,9 +223,9 @@ class OffersController extends Controller
     }
     public function getAllChatRooms($id) {
         try {
-            $rooms = Room::where('rooms.user_id', $id)
-            ->join('orders', 'rooms.order_id', '=', 'orders.id')
-            ->join('drivers', 'rooms.driver_id', '=', 'drivers.id')
+            $rooms = Room::with('order')->with('driver')->where('rooms.user_id', $id)
+            // ->join('orders', 'rooms.order_id', '=', 'orders.id')
+            // ->join('drivers', 'rooms.driver_id', '=', 'drivers.id')
            ->get();
             return response()->json(['data' => $rooms]);
 
@@ -236,9 +236,9 @@ class OffersController extends Controller
     }
     public function getAllChatRoomsDriver($id) {
         try {
-            $rooms = Room::where('rooms.driver_id', $id)
-            ->join('orders', 'rooms.order_id', '=', 'orders.id')
-            ->join('users', 'orders.user_id', '=', 'users.id')
+            $rooms = Room::with('order')->with('user')->where('rooms.driver_id', $id)
+            // ->join('orders', 'rooms.order_id', '=', 'orders.id')
+            // ->join('users', 'orders.user_id', '=', 'users.id')
            ->get();
             return response()->json(['data' => $rooms]);
 
