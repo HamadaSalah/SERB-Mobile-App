@@ -304,7 +304,7 @@ class OffersController extends Controller
     }
     public function MyOffers($id) {
         try {
-            $offers = Offer::where('driver_id', $id)->latest()->get()->toArray();
+            $offers = Order::where('driver_id', $id)->latest()->get()->toArray();
             return response()->json(['data' => $offers]);
 
         }

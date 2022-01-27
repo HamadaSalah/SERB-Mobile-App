@@ -12,8 +12,12 @@
                     </div>
                 </div>
                 <div class="card-body px-0 pb-2">
+                    <form action="">
+                        <label for="from" class="selctionss">من</label> <input type="date" name="from" id="from" style="padding: 3px"> 
+                       <label for="from" class="selctionss">إلي</label> <input type="date" name="from" id="from" style="padding: 3px">
+                    </form>
                     <div class="table-responsive p-0">
-                        <table class="table align-items-center mb-0" id="mydatatable" lass="display nowrap" style="width: 1000" border=1>
+                        <table class="table align-items-center mb-0" id="mydatatable" lass="display nowrap" style="width: 100" border=1>
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
@@ -52,7 +56,7 @@
                                         <p class="text-xs font-weight-bold mb-0">{{$order->users->name}}</p>
                                     </td>
                                     <td>
-                                        <p class="text-xs font-weight-bold mb-0">{{$order->driver->full_name}}</p>
+                                        {{-- <p class="text-xs font-weight-bold mb-0">{{$order->driver->full_name}}</p> --}}
                                     </td>
                                     <td>
                                         <p class="text-xs font-weight-bold mb-0">{{$order->type}}</p>

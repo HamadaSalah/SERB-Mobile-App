@@ -13,6 +13,10 @@ font-weight: 500;
 .card-header p {
 font-weight: bold
 }
+.selctionss {
+  padding-right: 30px;
+}
+
 .card {
 box-shadow:  0 4px 32px -1px rgb(0 0 0 / 30%), 
                 0 2px 4px -1px rgb(0 0 0 / 6%);
