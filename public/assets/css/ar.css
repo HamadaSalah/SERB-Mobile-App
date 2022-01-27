@@ -16,7 +16,15 @@ font-weight: bold
 .selctionss {
   padding-right: 30px;
 }
-
+.s_btn{
+  height: 35px;
+  margin-top: 15px;
+  position: relative;
+  display: inline;
+  line-height: 15px;
+  margin-right: 10px;
+  border-radius: 3px;
+}
 .card {
 box-shadow:  0 4px 32px -1px rgb(0 0 0 / 30%), 
                 0 2px 4px -1px rgb(0 0 0 / 6%);

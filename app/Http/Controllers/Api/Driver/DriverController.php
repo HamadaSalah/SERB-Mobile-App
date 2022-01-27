@@ -385,4 +385,14 @@ class DriverController extends Controller
         }
 
     }
+    public function DriverCar($id) {
+        try {
+            $cars = Car::where('driver_id', $id)->get();
+            return response()->json(['data' => $cars], 200);
+        }
+        catch(Exception $e) {
+            return response()->json($e->getMessage());
+        }
+
+    }
 }

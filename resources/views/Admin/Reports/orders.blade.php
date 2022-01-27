@@ -12,9 +12,10 @@
                     </div>
                 </div>
                 <div class="card-body px-0 pb-2">
-                    <form action="">
+                    <form action="" method="get">
                         <label for="from" class="selctionss">من</label> <input type="date" name="from" id="from" style="padding: 3px"> 
-                       <label for="from" class="selctionss">إلي</label> <input type="date" name="from" id="from" style="padding: 3px">
+                       <label for="from" class="selctionss">إلي</label> <input type="date" name="to" id="from" style="padding: 3px">
+                       <button class="btn btn-success s_btn" type="submit">بحث</button>
                     </form>
                     <div class="table-responsive p-0">
                         <table class="table align-items-center mb-0" id="mydatatable" lass="display nowrap" style="width: 100" border=1>
