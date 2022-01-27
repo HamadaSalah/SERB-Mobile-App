@@ -301,5 +301,15 @@ class OffersController extends Controller
         catch(Exception $e) {
             return response()->json($e->getMessage());
         }
-}
+    }
+    public function MyOffers($id) {
+        try {
+            $offers = Offer::where('driver_id', $id)->latest()->get()->toArray();
+            return response()->json(['data' => $offers]);
+
+        }
+        catch(Exception $e) {
+            return response()->json($e->getMessage());
+        }
+    }
 }

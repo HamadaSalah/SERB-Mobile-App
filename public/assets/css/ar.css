@@ -142,3 +142,34 @@ button.dt-button:first-child:hover, div.dt-button:first-child:hover, a.dt-button
   border-radius: 5px;
   border-color: navajowhite;
 }
+@media print {
+  /* * {
+    float: right!important;
+    direction: rtl;
+
+  } */
+  /* styling goes here */
+  h1 {
+    text-align: center;
+  }
+  table {
+    border: 1px solid #000;
+    float: right!important;
+    direction: rtl;
+    text-align: right!important;
+    width: 50%;
+  }
+  table header
+{
+    width: 50% !important;
+}
+
+table header tr td
+{
+    vertical-align: middle;
+    background-color: transparent;
+}
+  /* tr, td, th {
+    border: 1px solid #000;
+  } */
+}

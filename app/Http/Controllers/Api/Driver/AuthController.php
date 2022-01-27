@@ -4,15 +4,16 @@ namespace App\Http\Controllers\Api\Driver;
 
 use App\Driver;
 use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:api_driver', ['except' => ['login', 'register', 'VerficationCode', 'resetPassword', 'SendCodeReset', 'me', 'EditProfile']]);
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth:api_driver', ['except' => ['login', 'register', 'VerficationCode', 'resetPassword', 'SendCodeReset', 'me', 'EditProfile']]);
+    // }
 
     public function login(Request $request)
     {
@@ -101,6 +102,17 @@ class AuthController extends Controller
                 ], 200);
 
         }
+    }
+    public function Driverprofile($id) {
+        try {
+            $driver = Driver::findOrFail($id);
+            return response()->json(['data' => $driver]);
+
+        }
+        catch(Exception $e) {
+            return response()->json($e->getMessage());
+        }
+
     }
 
 }

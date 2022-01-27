@@ -74,6 +74,8 @@ Route::group(['prefix' => 'auth/driver'], function ($router) {
     Route::post('refresh', 'Driver\AuthController@refresh');
     Route::post('me', 'Driver\AuthController@me');
     Route::post('addNewOffer', 'Driver\OffersController@create');
+    Route::get('MyOffers/{id}', 'Driver\OffersController@MyOffers');
+    Route::get('Driverprofile/{id}', 'Driver\AuthController@Driverprofile');
 
 });
 Route::group(['middleware' => 'api', 'prefix' => 'auth/driver'], function () {
@@ -84,4 +86,5 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth/driver'], function () {
     Route::post('AddDriverToComapny/{id}', 'Driver\DriverController@AddDriverToComapny');
     Route::post('addCarCompany/{id}', 'Driver\DriverController@addCarCompany');
     Route::get('allcars/{id}', 'Driver\DriverController@allCars');
+    Route::get('AllCompanyDriver/{id}', 'Driver\DriverController@AllCompanyDriver');
 });

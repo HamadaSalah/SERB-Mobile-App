@@ -375,4 +375,14 @@ class DriverController extends Controller
             return response()->json($e->getMessage());
         }
     }
+    public function AllCompanyDriver($id) {
+        try {
+            $drivers = Driver::where('company_id', $id)->get();
+            return response()->json(['data' => $drivers], 200);
+        }
+        catch(Exception $e) {
+            return response()->json($e->getMessage());
+        }
+
+    }
 }
