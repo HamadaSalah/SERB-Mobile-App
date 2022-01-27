@@ -63,7 +63,7 @@ class AuthController extends Controller
             else {
                 $request_data['photo'] = NULL;
             }
-
+            $request_data['password'] = bcrypt($request_data['password']);
                 $driver = Driver::create($request_data);
                 $myuser = Driver::findOrFail($driver->id);
                 return response()->json([
