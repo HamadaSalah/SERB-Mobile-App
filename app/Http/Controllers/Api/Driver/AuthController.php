@@ -60,18 +60,11 @@ class AuthController extends Controller
                 $file->storeAs('public/drivers', $filename);
                 $request_data['photo'] = 'http://serb.devhamadasalah.com/storage/drivers/'.$filename;
             }
+            else {
+                $request_data['photo'] = NULL;
+            }
 
-                $driver = Driver::create([
-                    'full_name' => $request_data['full_name'],
-                    'email' => $request_data['email'],
-                    'phone' => $request_data['phone'],
-                    'password' => bcrypt($request_data['password']),
-                    'fcm_token' => $request_data['fcm_token'],
-                    'country' => $request_data['country'],
-                    'city' => $request_data['city'],
-                    'type' => $request_data['type'],
-                    'photo' => $request_data['photo']
-                ]);
+                $driver = Driver::create($request_data);
                 $myuser = Driver::findOrFail($driver->id);
                 return response()->json([
                     'message' => 'User successfully registered and code sent',
