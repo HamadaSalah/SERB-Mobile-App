@@ -52,6 +52,7 @@ class AuthController extends Controller
             return response()->json(['Validation Erorrs' => $validator->messages()], 403);
         }
         else {
+            $request_data = $request->except(['token']);
             if ($request->hasFile('photo')) {
                 $file = $request->file('photo');
                 $ext = $file->getClientOriginalExtension();
@@ -61,14 +62,14 @@ class AuthController extends Controller
             }
 
                 $driver = Driver::create([
-                    'full_name' => $request->full_name,
-                    'email' => $request->email,
-                    'phone' => $request->phone,
-                    'password' => bcrypt($request->password),
-                    'fcm_token' => $request->fcm_token,
-                    'country' => $request->country,
-                    'city' => $request->city,
-                    'type' => $request->type,
+                    'full_name' => $request_data['full_name'],
+                    'email' => $request_data['email'],
+                    'phone' => $request_data['phone'],
+                    'password' => bcrypt($request_data['password']),
+                    'fcm_token' => $request_data['fcm_token'],
+                    'country' => $request_data['country'],
+                    'city' => $request_data['city'],
+                    'type' => $request_data['type'],
                     'photo' => $request_data['photo']
                 ]);
                 $myuser = Driver::findOrFail($driver->id);
