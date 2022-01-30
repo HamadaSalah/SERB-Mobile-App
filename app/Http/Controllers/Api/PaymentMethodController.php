@@ -54,7 +54,7 @@ class PaymentMethodController extends Controller
             'ex_year' => 'required',
         ]);
         if($validator->fails()) {
-            return response()->json(['Validation Erorrs' => $validator->messages()], 403);
+            return response()->json(['Validation Erorrs' => $validator->messages()], 200);
         }
         else {
             $payment = BankAccount::create($request->all());
@@ -112,7 +112,7 @@ class PaymentMethodController extends Controller
             $balance = Wallet::where('user_id', $id)->first();
             return response()->json(['data' => ['Balance' => $balance->amount ]]);
         } else {
-            return response()->json(['data' => ['Balance' => 0 ]]);
+            return response()->json(['data' => ['Balance' => 0 ]], 200);
         }
         
         
@@ -137,7 +137,7 @@ class PaymentMethodController extends Controller
             'message' => 'required',
         ]);
         if($validator->fails()) {
-            return response()->json(['Validation Erorrs' => $validator->messages()], 403);
+            return response()->json(['Validation Erorrs' => $validator->messages()], 200);
         }
         else {
             Help::create(['user_id'=>$id, 'message' => $request->message]);
@@ -151,7 +151,7 @@ class PaymentMethodController extends Controller
             'message' => 'required',
         ]);
         if($validator->fails()) {
-            return response()->json(['Validation Erorrs' => $validator->messages()], 403);
+            return response()->json(['Validation Erorrs' => $validator->messages()], 200);
         }
         else {
             ContactUs::create(['user_id'=>$id, 'message' => $request->message, 'type' => $request->type]);

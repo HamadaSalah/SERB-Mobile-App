@@ -49,7 +49,7 @@ class AuthController extends Controller
             'type' => 'required'
         ]);
         if($validator->fails()) {
-            return response()->json(['Validation Erorrs' => $validator->messages()], 403);
+            return response()->json(['Validation Erorrs' => $validator->messages()], 200);
         }
         else {
             $request_data = $request->except(['token']);
@@ -69,7 +69,7 @@ class AuthController extends Controller
                 return response()->json([
                     'message' => 'User successfully registered and code sent',
                     'user' => $myuser
-                ], 201);
+                ], 200);
     
         }
     }
@@ -85,7 +85,7 @@ class AuthController extends Controller
             'id' => 'required'
         ]);
         if($validator->fails()) {
-            return response()->json(['Validation Erorrs' => $validator->messages()], 403);
+            return response()->json(['Validation Erorrs' => $validator->messages()], 200);
         }
         else {
             $driver = Driver::findOrFail($request->id);
@@ -100,7 +100,7 @@ class AuthController extends Controller
     public function Driverprofile($id) {
         try {
             $driver = Driver::findOrFail($id);
-            return response()->json(['data' => $driver]);
+            return response()->json(['data' => $driver], 200);
 
         }
         catch(Exception $e) {

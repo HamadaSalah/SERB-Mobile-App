@@ -45,7 +45,7 @@ class AuthController extends Controller
         $user =  auth()->user();
         $user->fcm_token = $request->fcm_token;
         $user->save();
-        return response()->json(['data' => auth()->user(), 'token' => $token]);
+        return response()->json(['data' => auth()->user(), 'token' => $token], 200);
         // return $this->respondWithToken($token);
     }
 
@@ -58,7 +58,7 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
         if($validator->fails()) {
-            return response()->json(['Validation Erorrs' => $validator->messages()], 403);
+            return response()->json(['Validation Erorrs' => $validator->messages()], 200);
         }
         else {
             $code = random_int(100000, 999999);
@@ -74,7 +74,7 @@ class AuthController extends Controller
                 return response()->json([
                     'message' => 'User successfully registered and code sent',
                     'user' => $myuser
-                ], 201);
+                ], 200);
     
             
                 // try {
@@ -100,7 +100,7 @@ class AuthController extends Controller
             'phone' => 'required',
         ]);
         if($validator->fails()) {
-            return response()->json(['Validation Erorrs' => $validator->messages()], 403);
+            return response()->json(['Validation Erorrs' => $validator->messages()], 200);
         }
         else {
             if(filter_var($request->phone, FILTER_VALIDATE_EMAIL)) {
@@ -173,7 +173,7 @@ class AuthController extends Controller
             else {
                 return response()->json([
                     'message' => 'No User With This Number'
-                ], 404);
+                ], 200);
 
             }
         }
@@ -184,7 +184,7 @@ class AuthController extends Controller
             'id' => 'required'
         ]);
         if($validator->fails()) {
-            return response()->json(['Validation Erorrs' => $validator->messages()], 403);
+            return response()->json(['Validation Erorrs' => $validator->messages()], 200);
         }
         else {
             $user = User::findOrFail($request->id);
@@ -203,7 +203,7 @@ class AuthController extends Controller
             'id' => 'required'
         ]);
         if($validator->fails()) {
-            return response()->json(['Validation Erorrs' => $validator->messages()], 403);
+            return response()->json(['Validation Erorrs' => $validator->messages()], 200);
         }
         else {
         $user = User::findOrFail($request->id);
@@ -214,10 +214,10 @@ class AuthController extends Controller
                 'message' => 'User successfully Activated',
                 'user' => $user,
                 'token' => $token
-            ], 201);
+            ], 200);
         }
         else {
-            return response()->json(['data' =>['Message' => 'Verfication Code is Fault']], 403);
+            return response()->json(['data' =>['Message' => 'Verfication Code is Fault']], 200);
         }
     }
 

@@ -54,7 +54,7 @@ class OrdersController extends Controller
             'user_id' => 'required'
         ]);
         if($validator->fails()) {
-            return response()->json(['Validation Erorrs' => $validator->messages()], 403);
+            return response()->json(['Validation Erorrs' => $validator->messages()], 200);
         }
         else {
             try {

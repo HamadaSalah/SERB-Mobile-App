@@ -149,7 +149,7 @@ class DriverController extends Controller
             'policy' => 'required'
         ]);
         if($validator->fails()) {
-            return response()->json(['Validation Erorrs' => $validator->messages()], 403);
+            return response()->json(['Validation Erorrs' => $validator->messages()], 200);
         }
         else {
             $request_data = $request->except('_token');
@@ -228,7 +228,7 @@ class DriverController extends Controller
             'photo' => 'required',
         ]);
         if($validator->fails()) {
-            return response()->json(['Validation Erorrs' => $validator->messages()], 403);
+            return response()->json(['Validation Erorrs' => $validator->messages()], 200);
         }
         else {
             if ($request->hasFile('nation_id')) {
@@ -289,7 +289,7 @@ class DriverController extends Controller
             'driver_id' => 'required'
         ]);
         if($validator->fails()) {
-            return response()->json(['Validation Erorrs' => $validator->messages()], 403);
+            return response()->json(['Validation Erorrs' => $validator->messages()], 200);
         }
         else {
             $request_data = $request->except('_token');

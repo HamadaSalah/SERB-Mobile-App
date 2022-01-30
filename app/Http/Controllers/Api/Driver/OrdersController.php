@@ -18,10 +18,10 @@ class OrdersController extends Controller
         if($limit != NULL) {
             try{
                 $orders = Order::with('users')->latest()->limit($limit)->get();
-                return response()->json(['data' =>$orders]);
+                return response()->json(['data' =>$orders], 200);
                 }
                 catch(\Exception $e) {
-                    return response()->json(['data' => $e->getMessage()]);
+                    return response()->json(['data' => $e->getMessage()], 200);
                 }
             }
                 
@@ -31,7 +31,7 @@ class OrdersController extends Controller
                 return response()->json(['data' =>$orders]);
                 }
                 catch(\Exception $e) {
-                    return response()->json(['data' => $e->getMessage()]);
+                    return response()->json(['data' => $e->getMessage()], 200);
                 }
 
         }
